@@ -23,6 +23,8 @@ class CreateApiLogsTable extends Migration
             $table->string('controller');
             $table->string('action');
             $table->string('models');
+            $table->string('response');
+            $table->string('exception');
             $table->string('ip');
             $table->timestamps();
         });

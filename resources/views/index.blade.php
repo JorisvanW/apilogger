@@ -38,8 +38,8 @@
                 </div>
                 <div class="list-group">
                     @forelse ($apilogs as $key => $log)
-                    <div class="list-group-item list-group-item-action" style="margin:5px">
-                        <div class = "row w-100">
+                        <div class="list-group-item list-group-item-action" style="margin:5px">
+                            <div class = "row w-100">
                             <span class="col-md-3">
                                 @if ($log->response>400)
                                     <button class="btn btn-danger font-weight-bold">{{$log->method}}</button>
@@ -53,30 +53,33 @@
                                     <b>{{$log->response}}</b>
                                 </small>
                             </span>
-                            <large class= "col-md-3"><b>Duration : </b>{{$log->duration * 1000}}ms</large>
-                            <large class= "col-md-3"><b>Date : </b>{{$log->created_at}}</large>
-                            <p class="col-md-3 mb-1"><b>IP :</b> {{$log->ip}}</p>
-                        </div>
-                        <hr>
-                        <div class="row w-100">
-                            <p class="col-md-3 mb-1">
-                                <b>URL : </b>{{$log->url}}</br>
-                            </p>
-                            <p class="col-md-6 mb-1"><b>Models(Retrieved) :</b> {{$log->models}}</p>
-                        </div>
-                        <div class="row w-100">
+                                <large class= "col-md-3"><b>Duration: </b>{{$log->duration * 1000}}ms</large>
+                                <large class= "col-md-3"><b>Date: </b>{{$log->created_at}}</large>
+                                <p class="col-md-3 mb-1"><b>IP:</b> {{$log->ip}}</p>
+                            </div>
+                            <hr>
+                            <div class="row w-100">
+                                <p class="col-md-3 mb-1">
+                                    <b>URL: </b>{{$log->url}}</br>
+                                </p>
+                                <p class="col-md-6 mb-1"><b>Models(Retrieved):</b> {{$log->models}}</p>
+                            </div>
+                            <div class="row w-100">
                                 <p class="col-md-3">
-                                    <b>Method :</b>   {{$log->action}}
+                                    <b>Method:</b>   {{$log->action}}
                                 </p>
-                                <p class="col-md-3 mb-1"><b>Payload : </b>{{$log->payload}}</p>
-
                                 <p class="col-md-6">
-                                    <b>Controller :</b> {{$log->controller}}
-
+                                    <b>Controller:</b> {{$log->controller}}
                                 </p>
-
+                                <p class="col-md-3">
+                                    <b>Exception:</b> {{$log->exception}}
+                                </p>
+                            </div>
+                            <div class="row w-100">
+                                <p class="col-md-6 mb-1"><b>Payload: </b> {{$log->payload}}</p>
+                                <p class="col-md-6 mb-1"><b>Response: </b>{{$log->response_payload}}</p>
+                            </div>
                         </div>
-                    </div>
                     @empty
                     <h5>
                       No Records
