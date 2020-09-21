@@ -35,7 +35,6 @@ class ApiLogServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadConfig();
-        $this->loadRoutes();
         $this->loadViews();
         $this->loadCommand();
         $this->loadMigrations();
@@ -75,10 +74,6 @@ class ApiLogServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../../config/apilog.php' => config_path('apilog.php')
         ], 'config');
-    }
-
-    public function loadRoutes(){
-        $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
     }
 
     public function loadViews(){
