@@ -87,11 +87,11 @@ abstract class AbstractLogger
         $this->logs['action']     = $action;
         $this->logs['models']     = $models;
         $this->logs['response_payload']   = !is_null($response->exception) ? $response->getContent() : null;
-        $this->logs['exception']  = !is_null($response->exception) ? [
+        $this->logs['exception']  = !is_null($response->exception) ? json_encode([
             'exception' => (string)(get_class($response->exception)),
             'code'      => $response->exception->getCode(),
             'message'   => $response->exception->getMessage(),
-        ] : null;
+        ]) : null;
         $this->logs['ip']         = $request->ip();
 
         return $this->logs;

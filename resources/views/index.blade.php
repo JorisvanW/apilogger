@@ -71,9 +71,9 @@
                                 <p class="col-md-6">
                                     <b>Controller:</b> {{$log->controller}}
                                 </p>
-                                <p class="col-md-3">
-                                    <b>Exception:</b> {{$log->exception}}
-                                </p>
+                            </div>
+                            <div class="row w-100">
+                                <p class="col-md-12 mb-1"><b>Exception: </b> {{$log->exception}}</p>
                             </div>
                             <div class="row w-100">
                                 <p class="col-md-6 mb-1"><b>Payload: </b> {{$log->payload}}</p>
