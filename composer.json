@@ -1,0 +1,28 @@
+{
+    "autoload": {
+        "psr-4": {
+            "JorisvanW\\": "src/"
+        }
+    },
+    "name": "jorisvanw/apilogger",
+    "description": "Small laravel package for viewing api logs which can be used in debugging.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joris van Willigen",
+            "email": "me@jorisvanw.me"
+        },,
+        {
+            "name": "aung win thant",
+            "email": "agwinthant@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "JorisvanW\\Providers\\ApiLogServiceProvider"
+            ]
+        }
+    }
+}
