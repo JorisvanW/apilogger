@@ -13,7 +13,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head>
-    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
 <body style="font-family: 'Nunito', sans-serif;font-size: 0.9rem;line-height: 1.6">
     <div class="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -28,7 +28,7 @@
             <div class="container">
                 <div class="w-100 d-flex justify-content-between">
                     <h3 class="text-center">Api Logger</h3>
-                    <form method="POST" action="{{ route('apilogs.deletelogs') }}">
+                    <form method="POST">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
                         <div class="form-group">
@@ -48,7 +48,7 @@
                                 @else
                                     <button class="btn btn-{{$log->method=="GET"? "primary" : "success"}} font-weight-bold">{{$log->method}}</button>
                                 @endif
-                                
+
                                 <small class="col-md-2">
                                     <b>{{$log->response}}</b>
                                 </small>
@@ -72,9 +72,9 @@
 
                                 <p class="col-md-6">
                                     <b>Controller :</b> {{$log->controller}}
-                                    
+
                                 </p>
-                            
+
                         </div>
                     </div>
                     @empty
@@ -82,7 +82,7 @@
                       No Records
                     </h5>
                   @endforelse
-                
+
                 </div>
             </div>
         </main>

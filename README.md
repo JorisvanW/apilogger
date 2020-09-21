@@ -52,7 +52,40 @@ Route::middleware('apilogger')->post('/test',function(){
 });
 ```
 
-4. Dashboard can be accessible via ***yourdomain.com/apilogs***
+4. Add a controller and your routes
+
+```php
+/**
+ * View API logs
+ *
+ * @param \JorisvanW\Contracts\ApiLoggerInterface $logger
+ *
+ * @return \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\View\View
+ */
+public function getApiLogger(ApiLoggerInterface $logger)
+{
+    $apilogs = count($apilogs = $logger->getLogs()) ? $apilogs->sortByDesc('created_at') : [];
+
+    return view('apilog::index', compact('apilogs'));
+}
+
+/**
+ * Delete API logs.
+ *
+ * @param \JorisvanW\Contracts\ApiLoggerInterface $logger
+ *
+ * @return \Illuminate\Http\RedirectResponse
+ */
+public function deleteApiLogs(ApiLoggerInterface $logger): \Illuminate\Http\RedirectResponse
+{
+    $logger->deleteLogs();
+
+    return redirect()->back();
+
+}
+```
+
+5. Dashboard can be accessible via your routes.
 
 ## Clear the logs
 
