@@ -76,23 +76,24 @@ abstract class AbstractLogger
             $value = "{$key} ({$value})";
         });
 
-        $models                   = implode(', ', $implode_models);
-        $this->logs['created_at'] = Carbon::now();
-        $this->logs['method']     = $request->method();
-        $this->logs['url']        = $request->path();
-        $this->logs['payload']    = $this->payload($request);
-        $this->logs['response']   = $response->status();
-        $this->logs['duration']   = number_format($endTime - LARAVEL_START, 3);
-        $this->logs['controller'] = $controller;
-        $this->logs['action']     = $action;
-        $this->logs['models']     = $models;
-        $this->logs['response_payload']   = !is_null($response->exception) ? $response->getContent() : null;
-        $this->logs['exception']  = !is_null($response->exception) ? json_encode([
+        $models                         = implode(', ', $implode_models);
+        $this->logs['created_at']       = Carbon::now();
+        $this->logs['method']           = $request->method();
+        $this->logs['url']              = $request->path();
+        $this->logs['headers']          = $this->headers($request);
+        $this->logs['payload']          = $this->payload($request);
+        $this->logs['response']         = $response->status();
+        $this->logs['duration']         = number_format($endTime - LARAVEL_START, 3);
+        $this->logs['controller']       = $controller;
+        $this->logs['action']           = $action;
+        $this->logs['models']           = $models;
+        $this->logs['response_payload'] = !is_null($response->exception) ? $response->getContent() : null;
+        $this->logs['exception']        = !is_null($response->exception) ? json_encode([
             'exception' => (string)(get_class($response->exception)),
             'code'      => $response->exception->getCode(),
             'message'   => $response->exception->getMessage(),
         ]) : null;
-        $this->logs['ip']         = $request->ip();
+        $this->logs['ip']               = $request->ip();
 
         return $this->logs;
     }
@@ -105,17 +106,20 @@ abstract class AbstractLogger
      */
     public function mapArrayToModel(array $data)
     {
-        $model             = new ApiLog();
-        $model->created_at = Carbon::make($data[0]);
-        $model->method     = $data[1];
-        $model->url        = $data[2];
-        $model->payload    = $data[3];
-        $model->response   = $data[4];
-        $model->duration   = $data[5];
-        $model->controller = $data[6];
-        $model->action     = $data[7];
-        $model->models     = $data[8];
-        $model->ip         = $data[9];
+        $model                   = new ApiLog();
+        $model->created_at       = Carbon::make($data[0]);
+        $model->method           = $data[1];
+        $model->url              = $data[2];
+        $model->headers          = $data[3];
+        $model->payload          = $data[4];
+        $model->response         = $data[5];
+        $model->duration         = $data[6];
+        $model->controller       = $data[7];
+        $model->action           = $data[8];
+        $model->models           = $data[9];
+        $model->response_payload = $data[10];
+        $model->exception        = $data[11];
+        $model->ip               = $data[12];
         return $model;
     }
 
@@ -137,5 +141,17 @@ abstract class AbstractLogger
         }
 
         return json_encode($allFields);
+    }
+
+    /**
+     * Formats the request headers for logging
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return string
+     */
+    protected function headers($request)
+    {
+        return json_encode($request->header(config('apilog.headers_log', [])));
     }
 }

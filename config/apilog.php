@@ -41,5 +41,17 @@ return [
     */
     'dont_log' => [
         'password', 'password_confirmation', 'new_password', 'old_password',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    |  Request headers to log
+    |--------------------------------------------------------------------------
+    |
+    | This sets which request headers you want to log
+    |
+    */
+    'headers_log' => [
+        'User-Agent'
     ]
 ];
