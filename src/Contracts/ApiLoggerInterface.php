@@ -19,6 +19,17 @@ interface ApiLoggerInterface{
      */
     public function getLogs();
     /**
+     * return logs to use in the frontend
+     * Works only for DB.
+     *
+     * @param int   $perPage
+     * @param null  $page
+     * @param array $options
+     *
+     * @return void
+     */
+    public function getLogsPaginated($perPage = 15, $page = null, $options = []);
+    /**
      * provide method to delete all the logs
      *
      * @return void

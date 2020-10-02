@@ -64,7 +64,7 @@ Route::middleware('apilogger')->post('/test',function(){
  */
 public function getApiLogger(ApiLoggerInterface $logger)
 {
-    $apilogs = count($apilogs = $logger->getLogs()) ? $apilogs->sortByDesc('created_at') : [];
+    $apilogs = $logger->getLogsPaginated();
 
     return view('apilog::index', compact('apilogs'));
 }
