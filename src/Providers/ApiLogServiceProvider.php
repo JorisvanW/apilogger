@@ -3,7 +3,7 @@
 namespace JorisvanW\Providers;
 
 use JorisvanW\Console\Commands\ClearApiLogger;
-use JorisvanW\Http\Exceptions\InvalidApiLogDriverException;
+use JorisvanW\Exceptions\InvalidApiLogDriverException;
 use JorisvanW\Http\Middleware\ApiLogger;
 use JorisvanW\Contracts\ApiLoggerInterface;
 use JorisvanW\DBLogger;
