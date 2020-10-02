@@ -22,7 +22,7 @@ class FileLogger extends AbstractLogger implements ApiLoggerInterface
     /**
      * read files from log directory
      *
-     * @return array
+     * @return \Illuminate\Support\Collection
      */
     public function getLogs()
     {
@@ -44,9 +44,21 @@ class FileLogger extends AbstractLogger implements ApiLoggerInterface
                 }
             }
             return collect($contentCollection);
-        } else {
-            return [];
         }
+
+        return collect();
+    }
+
+    /**
+     * return the models paginated
+     */
+    public function getLogsPaginated($perPage = 15, $page = null, $options = [])
+    {
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+
+        $items = $this->getLogs()->sortByDesc('created_at');
+
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
 
     /**

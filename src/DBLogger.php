@@ -26,6 +26,15 @@ class DBLogger extends AbstractLogger implements ApiLoggerInterface{
         return $this->logger->all();
     }
     /**
+     * return the models paginated
+     *
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function getLogsPaginated($perPage = 15, $page = null, $options = [])
+    {
+        return $this->logger->orderByDesc('created_at')->paginate($perPage);
+    }
+    /**
      * save logs in database
      */
     public function saveLogs($request,$response)
