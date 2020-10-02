@@ -62,6 +62,9 @@
                                 <p class="col-md-3 mb-1">
                                     <b>URL: </b>{{$log->url}}</br>
                                 </p>
+                                <p class="col-md-3 mb-1">
+                                    <b>Headers: </b>{{$log->headers}}</br>
+                                </p>
                                 <p class="col-md-6 mb-1"><b>Models(Retrieved):</b> {{$log->models}}</p>
                             </div>
                             <div class="row w-100">
