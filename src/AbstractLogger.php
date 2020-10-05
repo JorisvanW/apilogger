@@ -152,6 +152,14 @@ abstract class AbstractLogger
      */
     protected function headers($request)
     {
-        return json_encode($request->header(config('apilog.headers_log', [])));
+        $headers = [];
+
+        foreach (config('apilog.headers_log', []) as $headerName) {
+            if (!empty($header = $request->header($headerName))) {
+                $headers[$headerName] = $header;
+            }
+        }
+
+        return json_encode($headers);
     }
 }
